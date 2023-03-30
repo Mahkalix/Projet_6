@@ -114,6 +114,7 @@ body {
 ol,
 ul {
 	list-style: none;
+	text-decoration: none;
 }
 
 blockquote,
@@ -178,8 +179,6 @@ h2 {
 nav ul {
 	display: flex;
 	align-items: center;
-	list-style-type: none;
-
 }
 
 nav li {
@@ -235,15 +234,21 @@ li:hover {
 	width: 100%;
 
 }
-
-#contact {
-	width: 50%;
+.login{
+	width: 65%;
 	margin: auto;
-}
-
-#contact>* {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
 
+}
+#contact {
+	width: 65%;
+	margin: auto;
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+	text-align: center;
 }
 
 #contact h2 {
@@ -253,12 +258,13 @@ li:hover {
 #contact form {
 	text-align: left;
 	margin-top: 30px;
-	display: flex;
 	flex-direction: column;
+	display:flex;
 }
 
 #contact input {
 	height: 50px;
+	width: 379px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -279,9 +285,17 @@ input[type="submit"] {
 	color: white;
 	background-color: #1D6154;
 	margin: 2em auto;
-	width: 180px;
-	text-align: center;
+	width: 179px;
+	height: 36px;
 	border-radius: 60px;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	border: none;
+}
+
+input:focus {
+	outline:none;
 }
 
 footer nav ul {
@@ -316,4 +330,19 @@ footer nav ul {
 .active {
 	background-color: #1D6154;
 	color: white;
+}
+
+
+a {
+	display: flex;
+	justify-content: center;
+	color: black;
+}
+
+#no-underline {
+	text-decoration: none;
+}
+
+#no-underline:hover {
+	color: #B1663C;
 }
