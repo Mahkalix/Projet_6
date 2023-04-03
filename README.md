@@ -14,4 +14,3 @@ Finally, adding works to the gallery.
 </p>
 
 
-### Good visit >  https://mahkalix.github.io/Projet_6/
