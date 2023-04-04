@@ -16,9 +16,9 @@ async function fetchDataWorks() {
 async function fetchCategoriesWorks() {
     try {
         const response = await fetch('http://localhost:5678/api/categories')
-        const categories = await response.json()
+        const dataCategories = await response.json()
         // console.log(categories);
-        AddBtn(categories)
+        AddBtn(dataCategories)
     }
     catch (error) {
         console.log(error);
