@@ -47,3 +47,27 @@ async function FetchUserLogin() {
     }
 };
 
+// Utilisation du token pour envoyer une requête API
+
+// Récupération du token d'authentification depuis le stockage local
+const token = localStorage.getItem("token");
+
+// Définir l'URL de l'API
+const apiUrl = "http://localhost:5678/api/works";
+
+// Définir les paramètres de la requête
+const requestOptions = {
+    headers: {
+        accept: 'application/json',
+        'Authorization': `Bearer ${token}`
+    }
+};
+
+// Effectuer la requête
+try {
+    const response = await fetch(apiUrl, requestOptions);
+    const data = await response.json();
+    console.log(data);
+} catch (e) {
+    console.error(e);
+}

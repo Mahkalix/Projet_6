@@ -59,96 +59,110 @@ function AddBtn(categories) {
 };
 
 function Filters() {
-    const btnObjets = document.getElementById(1)
-    const btnAppart = document.getElementById(2)
-    const btnHotels = document.getElementById(3)
+    const btns = document.getElementsByClassName("btn")
+    console.log(btns)
 
-    // btn Tous
-    const btnTous = document.querySelector(".active")
-    btnTous.addEventListener("click", () => {
-        const filterTous = elementArray.filter(element => {
-            return element.categoryId
+    for (let i = 0; i < btns.length; i++) {
+        console.log(i)
+
+        btns[i].addEventListener("click", () => {
+            const filterbtn = elementArray.filter(element => {
+                return element.categoryId === i
+            });
+            btns[0].classList.remove("active")
+            btns[1].classList.remove("active")
+            btns[2].classList.remove("active")
+            btns[3].classList.remove("active")
+            btns[i].classList.add("active")
+            console.log(filterbtn);
+
+            // Reset
+            document.querySelector(".gallery").innerHTML = "";
+            // J'ajoute à la gallerie les images ayant toute les categorieID 
+            AddGallery(filterbtn)
         });
-        console.log(filterTous);
-        // console.log("Tous");
 
-        // Reset
-        document.querySelector(".gallery").innerHTML = "";
-        // J'ajoute à la gallerie les images ayant toute les categorieID 
-        AddGallery(filterTous)
+        // btn Tous
+        btns[0].addEventListener("click", () => {
+            const filterTous = elementArray.filter(element => {
+                return element.categoryId
+            });
+            btns[0].classList.add("active")
+            btns[i].classList.remove("active")
+            console.log(filterTous);
 
-        // Syncronisation au click de la class css active
-        btnObjets.classList.remove ("active")
-        btnHotels.classList.remove ("active")
-        btnAppart.classList.remove ("active")
-        btnTous.classList.add("active")
-        // console.log(btnTous)
-    });
-
-    // btn Objets
-
-    btnObjets.addEventListener("click", () => {
-        const filterObjets = elementArray.filter(element => {
-            return element.categoryId === 1
+            // Reset
+            document.querySelector(".gallery").innerHTML = "";
+            // J'ajoute à la gallerie les images ayant toute les categorieID 
+            AddGallery(filterTous)
         });
-        console.log(filterObjets);
-        // console.log("objets");
-
-        // Reset
-        document.querySelector(".gallery").innerHTML = "";
-        // J'ajoute à la gallerie les images ayant toute la categorieID 1
-        AddGallery(filterObjets)
-
-        // Syncronisation au click de la class css active
-        btnTous.classList.remove ("active")
-        btnHotels.classList.remove ("active")
-        btnAppart.classList.remove ("active")
-        btnObjets.classList.add("active")
-        // console.log(btnObjets)
-    });
-
-    // btn Appart
-    btnAppart.addEventListener("click", () => {
-        const filterAppart = elementArray.filter(element => {
-            return element.categoryId === 2
-        });
-        console.log(filterAppart);
-        // console.log("appart");
-
-        // Reset
-        document.querySelector(".gallery").innerHTML = "";
-        // J'ajoute à la gallerie les images ayant toute la categorieID 2
-        AddGallery(filterAppart)
-
-         // Syncronisation au click de la class css active
-         btnTous.classList.remove ("active")
-         btnHotels.classList.remove ("active")
-         btnObjets.classList.remove ("active")
-         btnAppart.classList.add("active")
-        //  console.log(btnAppart)
-    });
-
-    // btn Hotels
-    btnHotels.addEventListener("click", () => {
-        const filterHotels = elementArray.filter(element => {
-            return element.categoryId === 3
-        });
-        console.log(filterHotels);
-        // console.log("hotels");
-
-        // Reset
-        document.querySelector(".gallery").innerHTML = "";
-        // J'ajoute à la gallerie les images ayant toute la categorieID 3
-        AddGallery(filterHotels)
-
-         // Syncronisation au click de la class css active
-         btnTous.classList.remove ("active")
-         btnAppart.classList.remove ("active")
-         btnObjets.classList.remove ("active")
-         btnHotels.classList.add("active")
-        //  console.log(btnHotels)
-    });
-
+    };
 }
+
+//     // btn Objets
+
+//     btnObjets.addEventListener("click", () => {
+//         const filterObjets = elementArray.filter(element => {
+//             return element.categoryId === 1
+//         });
+//         console.log(filterObjets);
+//         // console.log("objets");
+
+//         // Reset
+//         document.querySelector(".gallery").innerHTML = "";
+//         // J'ajoute à la gallerie les images ayant toute la categorieID 1
+//         AddGallery(filterObjets)
+
+//         // Syncronisation au click de la class css active
+//         btnTous.classList.remove ("active")
+//         btnHotels.classList.remove ("active")
+//         btnAppart.classList.remove ("active")
+//         btnObjets.classList.add("active")
+//         // console.log(btnObjets)
+//     });
+
+//     // btn Appart
+//     btnAppart.addEventListener("click", () => {
+//         const filterAppart = elementArray.filter(element => {
+//             return element.categoryId === 2
+//         });
+//         console.log(filterAppart);
+//         // console.log("appart");
+
+//         // Reset
+//         document.querySelector(".gallery").innerHTML = "";
+//         // J'ajoute à la gallerie les images ayant toute la categorieID 2
+//         AddGallery(filterAppart)
+
+//          // Syncronisation au click de la class css active
+//          btnTous.classList.remove ("active")
+//          btnHotels.classList.remove ("active")
+//          btnObjets.classList.remove ("active")
+//          btnAppart.classList.add("active")
+//         //  console.log(btnAppart)
+//     });
+
+//     // btn Hotels
+//     btnHotels.addEventListener("click", () => {
+//         const filterHotels = elementArray.filter(element => {
+//             return element.categoryId === 3
+//         });
+//         console.log(filterHotels);
+//         // console.log("hotels");
+
+//         // Reset
+//         document.querySelector(".gallery").innerHTML = "";
+//         // J'ajoute à la gallerie les images ayant toute la categorieID 3
+//         AddGallery(filterHotels)
+
+//          // Syncronisation au click de la class css active
+//          btnTous.classList.remove ("active")
+//          btnAppart.classList.remove ("active")
+//          btnObjets.classList.remove ("active")
+//          btnHotels.classList.add("active")
+//         //  console.log(btnHotels)
+//     });
+
+// }
 
 
