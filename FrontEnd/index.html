@@ -11,12 +11,34 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body>
+	<div class="banner">
+		<div class="mode-edition">
+			<img class="edition-white" src="./assets/icons/edition-white.svg" alt="edition">
+			<div class="modal-btn-white">Mode édition</div>
+		</div>
+		<button class="publish">publier les changements</button>
+
+	</div>
+
+	<div class="modal-container">
+
+		<div class="modal">
+			<button class="close-modal modal-trigger"> <img class="cross" src="./assets/icons/cross.svg" alt="cross">
+			</button>
+			<h1 id="modalTitle">Galerie photo</h1>
+			<div class="trait"></div>
+			<input type="submit" value="Ajouter une photo">
+		</div>
+	</div>
+
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -28,12 +50,21 @@
 			</ul>
 		</nav>
 	</header>
+
 	<main>
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
+				<div class="mode-edition">
+					<img class="edition-black" src="./assets/icons/edition-black.svg" alt="edition">
+					<div class="modifier">modifier</div>
+				</div>
 			</figure>
 			<article>
+				<div class="mode-edition">
+					<img class="edition-black" src="./assets/icons/edition-black.svg" alt="edition">
+					<div class="modifier">modifier</div>
+				</div>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
 					finale du chantier.</p>
@@ -45,7 +76,13 @@
 			</article>
 		</section>
 		<section id="portfolio">
+			<div class="project">
 			<h2>Mes Projets</h2>
+			<div class="mode-edition">
+				<img class="edition-black modal-trigger" src="./assets/icons/edition-black.svg" alt="edition">
+				<div class="modifier  modal-trigger">modifier</div>
+			</div>
+		</div>
 			<div class="allBtn">
 				<button class="btn active"> Tous </button>
 			</div>
