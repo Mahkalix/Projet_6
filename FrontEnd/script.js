@@ -6,6 +6,7 @@ async function fetchDataWorks() {
         const data = await response.json()
         // console.log(data);
         AddGallery(data)
+        AddGalleryModale(data)
         elementArray = data
 
     }
@@ -129,14 +130,14 @@ function editMode(){
 
     editMode()
 
-// Au clic sur "logout", supprime dans le local storage login: true et token
+// "logout", supprime true et token et remplace lo
 log.addEventListener("click", () => {
     localStorage.removeItem("login");
     localStorage.removeItem("token");
     log.innerText = "login";
   });
 
-  // Modale Toggle ouvert et fermer 
+  // Modal Toggle ouvert et fermer 
 
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
@@ -147,8 +148,24 @@ function toggleModal(){
   modalContainer.classList.toggle("active")
 }
 
-// injecter les images dans la modale 
-const photosContainer = document.querySelector(".projets-photos")
-photosContainer.innerHTML = fetchCategoriesWorks();
+// injecter les images dans la modal 1
+const imgContainer = document.querySelector(".img-container");
+
+function AddGalleryModale(data){
+
+    data.forEach(element => {
+        // console.log(element.imageUrl, element.title);
+        const figure = `<figure class="element-modal">
+                <img class="logobin" src="./assets/icons/bin.svg" alt="">
+				<img class="img-modal" src=${element.imageUrl} alt=${element.title}>
+				<figcaption>éditer</figcaption>
+			</figure>`
+            imgContainer.innerHTML += figure
+            figure
+        // imgContainer.innerHTML = figure + gallery.innerHTML
+    });
+
+}
+
 
 
