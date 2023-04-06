@@ -44,6 +44,7 @@ function AddGallery(data) {
     });
 }
 
+// Création Btn Js 
 
 const allBtn = document.querySelector(".allBtn")
 // console.log(allBtn);
@@ -58,12 +59,14 @@ function AddBtn(categories) {
     Filters()
 };
 
+// Trie Filters 
+
 function Filters() {
     const btns = document.getElementsByClassName("btn")
-    console.log(btns)
+    // console.log(btns)
 
     for (let i = 0; i < btns.length; i++) {
-        console.log(i)
+        
 
         btns[i].addEventListener("click", () => {
             const filterbtn = elementArray.filter(element => {
@@ -99,80 +102,53 @@ function Filters() {
     };
 }
 
-//     // btn Objets
 
-//     btnObjets.addEventListener("click", () => {
-//         const filterObjets = elementArray.filter(element => {
-//             return element.categoryId === 1
-//         });
-//         console.log(filterObjets);
-//         // console.log("objets");
+// Mode edition si login 
 
-//         // Reset
-//         document.querySelector(".gallery").innerHTML = "";
-//         // J'ajoute à la gallerie les images ayant toute la categorieID 1
-//         AddGallery(filterObjets)
+const log = document.querySelector(".log");
+const banner = document.querySelector(".banner");
+const modifierContainer = document.querySelector(".modifier-container");
+const modifierprojetsContainer = document.querySelector(".modifier-projets-container");
+const projetsContainer = document.querySelector(".projets-container")
 
-//         // Syncronisation au click de la class css active
-//         btnTous.classList.remove ("active")
-//         btnHotels.classList.remove ("active")
-//         btnAppart.classList.remove ("active")
-//         btnObjets.classList.add("active")
-//         // console.log(btnObjets)
-//     });
+function editMode(){
+    if (localStorage.login) {
+        banner.style = "display: flex"
+        log.innerText = "logout",
+        modifierContainer.style = "display: flex"
+        modifierprojetsContainer.style = "display: flex;"
+        projetsContainer.style = "margin-bottom: 92px;"
+        allBtn.style = "display:none"
 
-//     // btn Appart
-//     btnAppart.addEventListener("click", () => {
-//         const filterAppart = elementArray.filter(element => {
-//             return element.categoryId === 2
-//         });
-//         console.log(filterAppart);
-//         // console.log("appart");
+        console.log("Vous êtes connecté !");
+      }
+      else {
+        console.log("Vous n'êtes pas connecté !");
+      }
+    }
 
-//         // Reset
-//         document.querySelector(".gallery").innerHTML = "";
-//         // J'ajoute à la gallerie les images ayant toute la categorieID 2
-//         AddGallery(filterAppart)
+    editMode()
 
-//          // Syncronisation au click de la class css active
-//          btnTous.classList.remove ("active")
-//          btnHotels.classList.remove ("active")
-//          btnObjets.classList.remove ("active")
-//          btnAppart.classList.add("active")
-//         //  console.log(btnAppart)
-//     });
+// Au clic sur "logout", supprime dans le local storage login: true et token
+log.addEventListener("click", () => {
+    localStorage.removeItem("login");
+    localStorage.removeItem("token");
+    log.innerText = "login";
+  });
 
-//     // btn Hotels
-//     btnHotels.addEventListener("click", () => {
-//         const filterHotels = elementArray.filter(element => {
-//             return element.categoryId === 3
-//         });
-//         console.log(filterHotels);
-//         // console.log("hotels");
-
-//         // Reset
-//         document.querySelector(".gallery").innerHTML = "";
-//         // J'ajoute à la gallerie les images ayant toute la categorieID 3
-//         AddGallery(filterHotels)
-
-//          // Syncronisation au click de la class css active
-//          btnTous.classList.remove ("active")
-//          btnAppart.classList.remove ("active")
-//          btnObjets.classList.remove ("active")
-//          btnHotels.classList.add("active")
-//         //  console.log(btnHotels)
-//     });
-
-// }
-
-
-// MODALE
+  // Modale Toggle ouvert et fermer 
 
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
 
-modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal))
+modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal,))
 
 function toggleModal(){
   modalContainer.classList.toggle("active")
 }
+
+// injecter les images dans la modale 
+const photosContainer = document.querySelector(".projets-photos")
+photosContainer.innerHTML = fetchCategoriesWorks();
+
+

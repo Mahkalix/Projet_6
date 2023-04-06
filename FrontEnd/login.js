@@ -11,6 +11,7 @@ submit.addEventListener("click", function (e) {
 async function FetchUserLogin() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const errorMsg = document.querySelector(".erreur-msg");
     try {
         const response = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
@@ -26,48 +27,23 @@ async function FetchUserLogin() {
 
         if (response.ok) {
             window.location.href = "./index.html";
+             // Token d'autentification
+            const dataUser = await response.json();
+            // console.log(dataUser)
+            // Enregistrement du token d'authentification et du login dans le stockage local
+            localStorage.setItem("token", dataUser.token)
+            localStorage.setItem("login", true)
         }
 
         else {
-            alert("User not found");
+            localStorage.setItem("token", undefined)
+            localStorage.setItem("login", undefined)
+            errorMsg.innerText = "Erreur dans l’identifiant ou le mot de passe";
+            console.log("Connexion Impossible : Erreur Identifiant ou Mot de passe")
         }
-
-
-        // Token d'autentification
-        const dataUser = await response.json();
-        // console.log(dataUser)
-
-        // Enregistrement du token d'authentification dans le stockage local
-        localStorage.setItem("token", dataUser.token)
-
     }
 
     catch (e) {
         console.log(e);
     }
 };
-
-// Utilisation du token pour envoyer une requête API
-
-// Récupération du token d'authentification depuis le stockage local
-const token = localStorage.getItem("token");
-
-// Définir l'URL de l'API
-const apiUrl = "http://localhost:5678/api/works";
-
-// Définir les paramètres de la requête
-const requestOptions = {
-    headers: {
-        accept: 'application/json',
-        'Authorization': `Bearer ${token}`
-    }
-};
-
-// Effectuer la requête
-try {
-    const response = await fetch(apiUrl, requestOptions);
-    const data = await response.json();
-    console.log(data);
-} catch (e) {
-    console.error(e);
-}
