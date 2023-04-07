@@ -215,21 +215,18 @@ function AddGalleryModale(data) {
 };
 
 // Ajout images
-const AddPic = document.querySelector(".addpic")
-console.log(AddPic)
-const previewImg = document.querySelector(".preview-image")
-let imageForm = "";
-let categoryForm = "";
-let titleForm;
+const AddPic = document.querySelector(".input-addpic")
+const previewImg  = document.querySelector(".import-pictures")
 
 
-function AddImage() {
-    AddPic.addEventListener("input", (e) => {
-        console.log(AddPic.files[0]);
-    imageForm = e.target.files[0];
-    const img = URL.createObjectURL(imageForm);
+
+
+AddPic.addEventListener("input", () => {
+    console.log(AddPic.files[0]);
+    const img = URL.createObjectURL(AddPic.files[0]);
+    // console.log(img)
     previewImg.src = img;
-    previewImg.style.setProperty("display", "block");
-    imgContainer.style.setProperty("display", "none");
-  });
-}
+    previewImg.style.setProperty("visibility", "visible");
+});
+
+

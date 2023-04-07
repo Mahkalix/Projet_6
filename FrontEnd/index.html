@@ -41,12 +41,13 @@
 			<button class="modal-close"> <img class="cross" src="./assets/icons/cross.svg" alt="cross">
 			</button>
 			<div id="modalTitle">Ajout photo</div>
-			<div class="ajout-picture preview-image">
-				<img src="./assets/icons/picture.svg" alt="picture">
-				<label class="addpic" for="addPic">+ Ajouter photo</label>
-				<input class="btn-hidden" type="file" id="addPic" name="addPic" accept="jpg, png">
+			<div class="ajout-picture ">
+				<div class="preview-image"><img class="import-pictures"></div>
+				<img class="icon-picture" src="./assets/icons/picture.svg" alt="picture">
+				<label class="label-addpic" for="addPic">+ Ajouter photo</label>
+				<input type="file" class="input-addpic" id="addPic" name="addPic" accept="jpg, png">
 				<p>jpg, png : 4mo max</p>
-			</div>
+		</div>
 			<div class="form-container">
 				<form method="post">
 					<label for="title">Titre</label>
