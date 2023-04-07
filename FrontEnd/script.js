@@ -67,7 +67,7 @@ function Filters() {
     // console.log(btns)
 
     for (let i = 0; i < btns.length; i++) {
-        
+
 
         btns[i].addEventListener("click", () => {
             const filterbtn = elementArray.filter(element => {
@@ -112,60 +112,77 @@ const modifierContainer = document.querySelector(".modifier-container");
 const modifierprojetsContainer = document.querySelector(".modifier-projets-container");
 const projetsContainer = document.querySelector(".projets-container")
 
-function editMode(){
+function editMode() {
     if (localStorage.login) {
         banner.style = "display: flex"
         log.innerText = "logout",
-        modifierContainer.style = "display: flex"
+            modifierContainer.style = "display: flex"
         modifierprojetsContainer.style = "display: flex;"
         projetsContainer.style = "margin-bottom: 92px;"
         allBtn.style = "display:none"
 
         console.log("Vous êtes connecté !");
-      }
-      else {
-        console.log("Vous n'êtes pas connecté !");
-      }
     }
+    else {
+        console.log("Vous n'êtes pas connecté !");
+    }
+}
 
-    editMode()
+editMode()
 
 // "logout", supprime true et token et remplace lo
 log.addEventListener("click", () => {
     localStorage.removeItem("login");
     localStorage.removeItem("token");
     log.innerText = "login";
-  });
+});
 
-  // Modal Toggle ouvert et fermer 
+// Modal Toggle ouvert et fermer 
 
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
 
 modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal,))
 
-function toggleModal(){
-  modalContainer.classList.toggle("active")
+function toggleModal() {
+    modalContainer.classList.toggle("active")
 }
 
-// injecter les images dans la modal 1
+// injecter les images dans la modal 1, et les supp 
 const imgContainer = document.querySelector(".img-container");
+const token = localStorage.token;
 
-function AddGalleryModale(data){
+function AddGalleryModale(data) {
 
     data.forEach(element => {
         // console.log(element.imageUrl, element.title);
         const figure = `<figure class="element-modal">
-                <img class="logobin" src="./assets/icons/bin.svg" alt="">
+                <img class="logobin" id="${element.id}" src="./assets/icons/bin.svg" alt="">
 				<img class="img-modal" src=${element.imageUrl} alt=${element.title}>
 				<figcaption>éditer</figcaption>
 			</figure>`
-            imgContainer.innerHTML += figure
-            figure
-        // imgContainer.innerHTML = figure + gallery.innerHTML
+        imgContainer.innerHTML += figure
+
+    });
+    // Suppression des images 
+
+    const deleteTrash = document.querySelectorAll(".logobin");
+    console.log(deleteTrash)
+    deleteTrash.forEach(element => {
+        element.addEventListener("click", () => {
+            FetchDeleteWorks(element.id)
+
+        });
     });
 
-}
-
-
-
+    async function FetchDeleteWorks(id) {
+        console.log(id);
+        const response = await fetch("http://" + window.location.hostname + `:5678/api/works/${id}`, {
+            method: "DELETE",
+            headers: {
+                accept: "*/*",
+                Authorization: `Bearer ${token}`
+            }
+        });
+    }
+};
