@@ -137,18 +137,44 @@ log.addEventListener("click", () => {
     log.innerText = "login";
 });
 
-// Modal Toggle ouvert et fermer 
+// Modal1 Toggle ouvert et fermer 
 
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
+const modal2 = document.querySelector(".modal-container2")
+const modal1 = document.querySelector(".modal-container");
+const modalOpen = document.querySelectorAll(".modal-open");
+const modalClose = document.querySelectorAll(".modal-close");
+const AddPicture = document.querySelector(".addpicture");
 
-modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal,))
+modalOpen.forEach(trigger => trigger.addEventListener("click", OpenModal,))
 
-function toggleModal() {
-    modalContainer.classList.toggle("active")
+function OpenModal() {
+    modal1.classList.add("active")
 }
 
-// injecter les images dans la modal 1, et les supp 
+modalClose.forEach(trigger => trigger.addEventListener("click", CloseModal,))
+
+function CloseModal() {
+    modal1.classList.remove("active")
+    modal2.classList.remove("active")
+}
+
+const arrowBack = document.querySelector(".arrowback");
+
+arrowBack.addEventListener("click", () => {
+    modal1.classList.add("active")
+    modal2.classList.remove("active")
+});
+
+
+// btn ajouter des photos 
+AddPicture.addEventListener("click", () => {
+    modal2.classList.add("active")
+    modal1.classList.remove("active")
+
+});
+
+
+// Injecter les images dans la modal 1, et les supp 
 const imgContainer = document.querySelector(".img-container");
 const token = localStorage.token;
 
@@ -164,10 +190,11 @@ function AddGalleryModale(data) {
         imgContainer.innerHTML += figure
 
     });
+
     // Suppression des images 
 
     const deleteTrash = document.querySelectorAll(".logobin");
-    console.log(deleteTrash)
+    // console.log(deleteTrash)
     deleteTrash.forEach(element => {
         element.addEventListener("click", () => {
             FetchDeleteWorks(element.id)
@@ -186,3 +213,23 @@ function AddGalleryModale(data) {
         });
     }
 };
+
+// Ajout images
+const AddPic = document.querySelector(".addpic")
+console.log(AddPic)
+const previewImg = document.querySelector(".preview-image")
+let imageForm = "";
+let categoryForm = "";
+let titleForm;
+
+
+function AddImage() {
+    AddPic.addEventListener("input", (e) => {
+        console.log(AddPic.files[0]);
+    imageForm = e.target.files[0];
+    const img = URL.createObjectURL(imageForm);
+    previewImg.src = img;
+    previewImg.style.setProperty("display", "block");
+    imgContainer.style.setProperty("display", "none");
+  });
+}

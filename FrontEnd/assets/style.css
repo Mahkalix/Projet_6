@@ -505,15 +505,22 @@ figcaption {
 	background-color: #4646464d;
 }
 
-.modal-container.active {
+.modal-container2 {
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #4646464d;
+}
+
+.modal-container2.active {
 	visibility: visible;
 }
 
-.overlay {
-	opacity: 0;
-	position: absolute;
-	height: 100vh;
-	width: 100vw;
+.modal-container.active {
+	visibility: visible;
 }
 
 
@@ -526,10 +533,27 @@ figcaption {
 	padding: 30px;
 	background: #fff;
 	border-radius: 10px;
-	position: absolute;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.modal2 {
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 670px;
+	width: 630px;
+	border-radius: 10px;
+	left: 50%;
+	top: 50%;
+	padding: 30px;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+
 }
 
 .modal-container.active .modal {
@@ -537,19 +561,24 @@ figcaption {
 	transform: translate(-50%, -50%);
 }
 
-.close-modal {
+.modal-container2.active .modal2 {
+	opacity: 1;
+	transform: translate(-50%, -50%);
+}
+
+.modal-close {
 	padding: 8px 10px;
 	border: none;
 	font-size: 18px;
 	position: absolute;
-	top: 10px;
-	right: 10px;
+	top: 20px;
+	right: 20px;
 	cursor: pointer;
 	background-color: #fff;
 	color: #000000;
 }
 
-.modal h1 {
+#modalTitle {
 	margin-top: 40px;
 	margin-bottom: 10px;
 	font-weight: 500;
@@ -560,7 +589,6 @@ figcaption {
 	letter-spacing: 0em;
 	text-align: center;
 	color: black;
-
 }
 
 .delete-gallery {
@@ -611,83 +639,113 @@ figcaption {
 	border: 1px solid #B3B3B3;
 }
 
-/* MODALE 2
+/* MODALE 2 */
 
-.modal-container2 {
-	visibility: hidden;
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background-color: #4646464d;
-}
-
-.modal-container.active {
-	visibility: visible;
-}
-
-.overlay {
-	opacity: 0;
-	position: absolute;
-	height: 100vh;
-	width: 100vw;
-}
-
-
-.modal {
-	opacity: 0;
-	max-width: 500px;
-	min-width: 300px;
-	height: 731px;
-	width: 630px;
-	left: 50%;
-	top: 50%;
-	padding: 30px;
-	background: #fff;
-	border-radius: 10px;
-	position: absolute;
-}
-
-.modal-container.active .modal {
-	opacity: 1;
-	transform: translate(-50%, -50%);
-}
-
-.close-modal {
-	padding: 8px 10px;
-	border: none;
-	font-size: 18px;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
-	background-color: #fff;
-	color: #000000;
-}
-
-.modal h1 {
-	margin-bottom: 10px;
-	font-weight: 500;
-	font-family: Work Sans;
-	font-size: 26px;
-	font-weight: 400;
-	line-height: 30px;
-	letter-spacing: 0em;
-	text-align: center;
-	color: black;
-
-}
-
-.delete-galerry {
+.valider {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #D65353;
+	background: #A7A7A7;
+	color: white;
+	font-family: Syne;
+	font-size: 14px;
+	font-weight: 700;
+	text-align: center;
+	height: 36px;
+	width: 237px;
+	border-radius: 60px;
+	border: none;
+	margin-top: 32px;
+
 }
 
+.arrowback {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	background-color: #fff;
+	border: none;
+	cursor: pointer;
+}
 
-.trait {
-	width: 500px;
-	border: 1px solid #B3B3B3;
-} */
+.ajout-picture {
+	background: #E8F1F6;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.ajout-picture p {
+
+	color: #000000;
+	font-family: Work Sans;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0em;
+	text-align: center;
+	margin-bottom: 19px;
+}
+
+.ajout-picture img {
+	margin-top: 28px;
+	height: 46px;
+	width: 58px;
+}
+
+.addpic {
+	margin-top: 31px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 36px;
+	width: 173px;
+	border-radius: 50px;
+	background-color: #CBD6DC;
+	color: #306685;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.btn-hidden {
+	visibility: hidden;
+}
+
+.form-container label {
+	color: black;
+	display: flex;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: left;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+.form-container input {
+	height: 51px;
+	width: 420px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border:none;
+}
+
+.form-container select{
+	height: 51px;
+	width: 420px;
+	margin-bottom: 40px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border:none;
+
+}
