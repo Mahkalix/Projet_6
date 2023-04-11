@@ -90,6 +90,7 @@ video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	scroll-behavior: smooth;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -479,12 +480,28 @@ figcaption {
 	margin-top: 46px;
 	display: flex;
 	flex-direction: row;
-	width: 80%;
+	width: 60%;
 	flex-wrap: wrap;
 	height: 60%;
-	overflow-y: scroll;
-	justify-content: space-between;
+	overflow:auto;
+	justify-content: flex-start;
+	margin-bottom: 30px;
 }
+.img-container::-webkit-scrollbar {
+	width: 10px;
+  }
+
+  /* Track */
+  .img-container::-webkit-scrollbar-track {
+	background: #d3d3d3; 
+	border-radius: 20px;
+  }
+   
+  /* Handle */
+  .img-container::-webkit-scrollbar-thumb {
+	background: #1D6154; 
+	border-radius: 20px;
+  }
 
 .img-modal {
 	height: 104.07979583740234px;
