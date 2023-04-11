@@ -14,6 +14,7 @@ async function fetchDataWorks() {
         console.log(error);
     }
 }
+
 async function fetchCategoriesWorks() {
     try {
         const response = await fetch('http://localhost:5678/api/categories')
@@ -201,32 +202,102 @@ function AddGalleryModale(data) {
 
         });
     });
-
-    async function FetchDeleteWorks(id) {
-        console.log(id);
-        const response = await fetch("http://" + window.location.hostname + `:5678/api/works/${id}`, {
-            method: "DELETE",
-            headers: {
-                accept: "*/*",
-                Authorization: `Bearer ${token}`
-            }
-        });
-    }
 };
 
-// Ajout images
-const AddPic = document.querySelector(".input-addpic")
-const previewImg  = document.querySelector(".import-pictures")
+async function FetchDeleteWorks(id) {
+    console.log(id);
+    const response = await fetch("http://" + window.location.hostname + `:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: {
+            accept: "*/*",
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
 
 
+const AddPicModal = document.querySelector(".input-addpic")
+const previewImg = document.querySelector(".import-pictures")
+const AddTitle = document.querySelector(".title")
+const AddCategorie = document.querySelector(".category")
+const Submit = document.querySelector(".valider")
+const msgError = document.querySelector(".msg-error")
+let imgPreview ="";
+let inputCategory = "";
+let  inputTitle;
+// console.log( inputTitle)
 
+function addImage() {
+    // Ajout images
+    AddPicModal.addEventListener("input", (e) => {
+        console.log( AddPicModal.files[0]);
+        imgPreview = e.target.files[0];
+        const img = URL.createObjectURL( AddPicModal.files[0]);
+        // console.log(img)
+        previewImg.src = img;
+        previewImg.style.setProperty("visibility", "visible");
+    });
 
-AddPic.addEventListener("input", () => {
-    console.log(AddPic.files[0]);
-    const img = URL.createObjectURL(AddPic.files[0]);
-    // console.log(img)
-    previewImg.src = img;
-    previewImg.style.setProperty("visibility", "visible");
-});
+    //Titre
+    AddTitle.addEventListener("input", (e) => {
+        inputTitle = e.target.value;
+        console.log( inputTitle)
 
+    });
+    //Catégories
+    AddCategorie.addEventListener("input", (e) => {
+        inputCategory = e.target.selectedIndex;
+        console.log(inputCategory)
+    });
 
+   //Submit
+   Submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (imgPreview && inputTitle && inputCategory) {
+      const formData = new FormData();
+      console.log(imgPreview, inputTitle, inputCategory);
+      formData.append("image", imgPreview);
+      formData.append("title", inputTitle);
+      formData.append("category", inputCategory);
+      console.log(formData);
+      try {
+        //Fetch ajout des travaux
+      const response = fetch("http://" + window.location.hostname +":5678/api/works", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        })
+        const data = response.json()
+        console.log(data);
+        msgError.innerText = "Posté !";
+        msgError.style.color = "green";
+
+        //Clear les galleries
+        gallery.innerHTML = "";
+        modalGallery.innerHTML = "";
+        fetchDataWorks();
+        AddPicModal.reset();
+        previewImg.src = "";
+        previewImg.style.setProperty("display", "none");
+        imgContainer.style.setProperty("display", "flex");
+        setTimeout(() => {
+            msgError.innerText = "";
+        }, 4000);
+  }
+  catch (error) {
+    console.log("Il y a eu une erreur sur le Fetch: " + error)
+  }
+    } else {
+        msgError.innerText = "Veuillez remplir tous les champs.";
+        msgError.style.color = "red";
+      setTimeout(() => {
+        msgError.innerText = "";
+      }, 4000);
+      console.log("Tous les champs ne sont pas remplis !");
+    }
+  });
+}
+
+addImage()
