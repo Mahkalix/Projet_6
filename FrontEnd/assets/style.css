@@ -662,7 +662,9 @@ figcaption {
 
 /* MODALE 2 */
 
+
 .valider {
+	margin-left: 90px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -677,7 +679,6 @@ figcaption {
 	border-radius: 60px;
 	border: none;
 	margin-top: 32px;
-
 }
 
 .arrowback {

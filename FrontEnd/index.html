@@ -47,24 +47,24 @@
 				<label class="label-addpic" for="addPic">+ Ajouter photo</label>
 				<input type="file" class="input-addpic" id="addPic" name="addPic" accept="jpg, png">
 				<p>jpg, png : 4mo max</p>
-		</div>
+			</div>
 			<div class="form-container">
-				<form method="post">
+				<form class="formmodal2" method="post">
 					<label for="title">Titre</label>
 					<input class="title" type="text">
 					<label for="category">Catégorie</label>
 					<select class="category" id="category" name="category">
 						<option value=""></option>
 						<option id="1" class="selectcategory">Objets</option>
-						<option id="2"class="selectcategory">Appartements</option>
+						<option id="2" class="selectcategory">Appartements</option>
 						<option id="3" class="selectcategory">Hotels & Restaurants</option>
 					</select>
+					<div class="trait-container">
+						<div class="trait"></div>
+					</div>
+					<button type="submit" class="valider">Valider</button>
 				</form>
 			</div>
-			<div class="trait-container">
-				<div class="trait"></div>
-			</div>
-			<button type="submit" class="valider">Valider</button>
 			<p class="msg-error"></p>
 		</div>
 	</div>

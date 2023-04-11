@@ -222,17 +222,19 @@ const AddTitle = document.querySelector(".title")
 const AddCategorie = document.querySelector(".category")
 const Submit = document.querySelector(".valider")
 const msgError = document.querySelector(".msg-error")
-let imgPreview ="";
+const form = document.querySelector(".formmodal2")
+let imgPreview = "";
 let inputCategory = "";
-let  inputTitle;
-// console.log( inputTitle)
+let inputTitle;
+console.log(form)
+
 
 function addImage() {
     // Ajout images
     AddPicModal.addEventListener("input", (e) => {
-        console.log( AddPicModal.files[0]);
+        console.log(AddPicModal.files[0]);
         imgPreview = e.target.files[0];
-        const img = URL.createObjectURL( AddPicModal.files[0]);
+        const img = URL.createObjectURL(AddPicModal.files[0]);
         // console.log(img)
         previewImg.src = img;
         previewImg.style.setProperty("visibility", "visible");
@@ -241,7 +243,7 @@ function addImage() {
     //Titre
     AddTitle.addEventListener("input", (e) => {
         inputTitle = e.target.value;
-        console.log( inputTitle)
+        console.log(inputTitle)
 
     });
     //Catégories
@@ -250,54 +252,69 @@ function addImage() {
         console.log(inputCategory)
     });
 
-   //Submit
-   Submit.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (imgPreview && inputTitle && inputCategory) {
-      const formData = new FormData();
-      console.log(imgPreview, inputTitle, inputCategory);
-      formData.append("image", imgPreview);
-      formData.append("title", inputTitle);
-      formData.append("category", inputCategory);
-      console.log(formData);
-      try {
-        //Fetch ajout des travaux
-      const response = fetch("http://" + window.location.hostname +":5678/api/works", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        })
-        const data = response.json()
-        console.log(data);
-        msgError.innerText = "Posté !";
-        msgError.style.color = "green";
+    // Si tout les elements sont remplies alors changements couleurs boutons 
+    form.addEventListener("change", () => {
+        if (imgPreview !== "" && inputTitle !== "" && inputCategory !== "") {
+            Submit.style.background = "#1D6154";
+        }
+        else {
+            Submit.style.backgroundColor = ''; // Réinitialise la couleur par défaut du bouton
+        }
+    });
 
-        //Clear les galleries
-        gallery.innerHTML = "";
-        modalGallery.innerHTML = "";
-        fetchDataWorks();
-        AddPicModal.reset();
-        previewImg.src = "";
-        previewImg.style.setProperty("display", "none");
-        imgContainer.style.setProperty("display", "flex");
-        setTimeout(() => {
-            msgError.innerText = "";
-        }, 4000);
-  }
-  catch (error) {
-    console.log("Il y a eu une erreur sur le Fetch: " + error)
-  }
-    } else {
-        msgError.innerText = "Veuillez remplir tous les champs.";
-        msgError.style.color = "red";
-      setTimeout(() => {
-        msgError.innerText = "";
-      }, 4000);
-      console.log("Tous les champs ne sont pas remplis !");
-    }
-  });
+
+    //Submit
+    Submit.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (imgPreview && inputTitle && inputCategory) {
+            const formData = new FormData();
+            console.log(imgPreview, inputTitle, inputCategory);
+            formData.append("image", imgPreview);
+            formData.append("title", inputTitle);
+            formData.append("category", inputCategory);
+            console.log(formData);
+
+            fetchDataSubmit()
+            async function fetchDataSubmit() {
+                try {
+                    // Fetch ajout des travaux
+                    const response = await fetch("http://" + window.location.hostname + ":5678/api/works", {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: formData,
+                    });
+                    const dataresponse = await response.json()
+                    console.log(dataresponse);
+                    msgError.style.color = "#1D6154";
+                    Submit.style.background = "#1D6154"
+
+                    //Clear les galleries
+                    gallery.innerHTML = "";
+                    fetchDataWorks();
+                    previewImg.style.setProperty("visibility", "hidden");
+                    imgContainer.style.setProperty("display", "flex");
+                    setTimeout(() => {
+                        msgError.innerText = "";
+                    }, 4000);
+                }
+                catch (error) {
+                    console.log("Il y a eu une erreur sur le Fetch: " + error)
+                }
+            }
+
+        } else {
+            msgError.innerText = "Veuillez remplir tous les champs.";
+            msgError.style.color = "red";
+            setTimeout(() => {
+                msgError.innerText = "";
+            }, 4000);
+            console.log("Tous les champs ne sont pas remplis !");
+        }
+    });
 }
+
+
 
 addImage()
