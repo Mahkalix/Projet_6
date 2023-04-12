@@ -356,11 +356,11 @@ a {
 	color: black;
 }
 
-#no-underline {
+.no-underline  {
 	text-decoration: none;
 }
 
-#no-underline:hover {
+.no-underline:hover {
 	color: #B1663C;
 }
 
@@ -477,7 +477,6 @@ figcaption {
 }
 
 .img-container {
-	margin-top: 46px;
 	display: flex;
 	flex-direction: row;
 	width: 60%;
@@ -599,9 +598,9 @@ figcaption {
 	color: #000000;
 }
 
-#modalTitle {
+.modalTitle {
 	margin-top: 40px;
-	margin-bottom: 10px;
+	margin-bottom: 36px;
 	font-weight: 500;
 	font-family: Work Sans;
 	font-size: 26px;

@@ -2,7 +2,7 @@ let elementArray
 
 async function fetchDataWorks() {
     try {
-        const response = await fetch('http://localhost:5678/api/works')
+        const response = await fetch("http://" + window.location.hostname + ":5678/api/works")
         const data = await response.json()
         // console.log(data);
         AddGallery(data)
@@ -17,7 +17,7 @@ async function fetchDataWorks() {
 
 async function fetchCategoriesWorks() {
     try {
-        const response = await fetch('http://localhost:5678/api/categories')
+        const response = await fetch("http://" + window.location.hostname + ":5678/api/categories")
         const dataCategories = await response.json()
         // console.log(categories);
         AddBtn(dataCategories)
@@ -69,7 +69,6 @@ function Filters() {
 
     for (let i = 0; i < btns.length; i++) {
 
-
         btns[i].addEventListener("click", () => {
             const filterbtn = elementArray.filter(element => {
                 return element.categoryId === i
@@ -107,7 +106,7 @@ function Filters() {
 
 // Mode edition si login 
 
-const log = document.querySelector(".log");
+const log = document.querySelector("#log");
 const banner = document.querySelector(".banner");
 const modifierContainer = document.querySelector(".modifier-container");
 const modifierprojetsContainer = document.querySelector(".modifier-projets-container");
@@ -175,7 +174,7 @@ AddPicture.addEventListener("click", () => {
 });
 
 
-// Injecter les images dans la modal 1, et les supp 
+// Injecter les images dans la modal 1
 const imgContainer = document.querySelector(".img-container");
 const token = localStorage.token;
 
@@ -215,6 +214,7 @@ async function FetchDeleteWorks(id) {
     });
 }
 
+//  Ajout Photo 2ème Modal 
 
 const AddPicModal = document.querySelector(".input-addpic")
 const previewImg = document.querySelector(".import-pictures")

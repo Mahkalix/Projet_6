@@ -24,7 +24,7 @@
 		<div class="modal">
 			<button class="modal-close"> <img class="cross" src="./assets/icons/cross.svg" alt="cross">
 			</button>
-			<div id="modalTitle">Galerie photo</div>
+			<div class="modalTitle">Galerie photo</div>
 			<div class="img-container"></div>
 			<div class="trait-container">
 				<div class="trait"></div>
@@ -40,21 +40,21 @@
 			</button>
 			<button class="modal-close"> <img class="cross" src="./assets/icons/cross.svg" alt="cross">
 			</button>
-			<div id="modalTitle">Ajout photo</div>
+			<div class="modalTitle">Ajout photo</div>
 			<div class="ajout-picture ">
-				<div class="preview-image"><img class="import-pictures"></div>
+				<div class="preview-image"><img alt="imguser" src="‎" class="import-pictures"></div>
 				<img class="icon-picture" src="./assets/icons/picture.svg" alt="picture">
 				<label class="label-addpic" for="addPic">+ Ajouter photo</label>
-				<input type="file" class="input-addpic" id="addPic" name="addPic" accept="jpg, png">
+				<input type="file" class="input-addpic" id="addPic" name="addPic" accept="jpg/png">
 				<p>jpg, png : 4mo max</p>
 			</div>
 			<div class="form-container">
 				<form class="formmodal2" method="post">
 					<label for="title">Titre</label>
-					<input class="title" type="text">
+					<input class="title" id="title" type="text" >
 					<label for="category">Catégorie</label>
 					<select class="category" id="category" name="category">
-						<option value=""></option>
+						<option value="">‎ </option>
 						<option id="1" class="selectcategory">Objets</option>
 						<option id="2" class="selectcategory">Appartements</option>
 						<option id="3" class="selectcategory">Hotels & Restaurants</option>
@@ -81,9 +81,9 @@
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li><a id="no-underline" href="#portfolio"> projets</a></li>
-				<li><a id="no-underline" href="#contact"> contact</li>
-				<li><a id="no-underline" class="log" href="./login.html">login</a> </li>
+				<li><a class="no-underline" href="#portfolio"> projets</a></li>
+				<li><a class="no-underline" href="#contact"> contact</a></li>
+				<li><a class="no-underline" id="log" href="./login.html">login</a> </li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>

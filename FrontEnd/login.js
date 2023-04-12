@@ -13,7 +13,7 @@ async function FetchUserLogin() {
     const password = document.getElementById("password").value;
     const errorMsg = document.querySelector(".erreur-msg");
     try {
-        const response = await fetch("http://localhost:5678/api/users/login", {
+        const response = await fetch("http://"+ window.location.hostname +":5678/api/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
