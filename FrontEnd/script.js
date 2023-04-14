@@ -252,10 +252,11 @@ function addImage() {
         console.log(inputCategory)
     });
 
-    // Si tout les elements sont remplies alors changements couleurs boutons 
+    // Si tout les elements sont remplies alors changements couleurs boutons !== (strictement different)
     form.addEventListener("change", () => {
         if (imgPreview !== "" && inputTitle !== "" && inputCategory !== "") {
             Submit.style.background = "#1D6154";
+            Submit.style.cursor = "pointer";
         }
         else {
             Submit.style.backgroundColor = ''; // Réinitialise la couleur par défaut du bouton
