@@ -223,9 +223,6 @@ const AddCategorie = document.querySelector(".category")
 const Submit = document.querySelector(".valider")
 const msgError = document.querySelector(".msg-error")
 const form = document.querySelector(".formmodal2")
-let imgPreview = "";
-let inputCategory = "";
-let inputTitle;
 console.log(form)
 
 
