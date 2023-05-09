@@ -8,7 +8,6 @@ async function fetchDataWorks() {
         AddGallery(data)
         AddGalleryModale(data)
         elementArray = data
-
     }
     catch (error) {
         console.log(error);
@@ -116,7 +115,7 @@ function editMode() {
     if (localStorage.login) {
         banner.style = "display: flex"
         log.innerText = "logout",
-            modifierContainer.style = "display: flex"
+        modifierContainer.style = "display: flex"
         modifierprojetsContainer.style = "display: flex;"
         projetsContainer.style = "margin-bottom: 92px;"
         allBtn.style = "display:none"
@@ -130,7 +129,7 @@ function editMode() {
 
 editMode()
 
-// "logout", supprime true et token et remplace lo
+// "logout", supprime true et token 
 log.addEventListener("click", () => {
     localStorage.removeItem("login");
     localStorage.removeItem("token");
