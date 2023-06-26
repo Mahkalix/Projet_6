@@ -1,6 +1,5 @@
-# Projet_6
-
-Sophie Bluel's Portfolio
+# Sophie Bluel's Portfolio
+n°6 of Openclassroom's Project 
 
 My misson was to retrieved the projects from the gallery and added the filters. Then, made the connection. 
 Finally, adding works to the gallery. 
